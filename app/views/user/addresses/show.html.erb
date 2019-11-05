@@ -2,4 +2,7 @@
 <p>Name: <%= @address.name %></p>
 <p><%= @address.street_address %></p>
 <p><%= "#{@address.city} #{@address.state} #{@address.zip}" %></p>
-<p><%= link_to 'Edit Address', "/profile/addresses/#{@address.id}/edit" %></p>
+<% if @address.none_shipped? %>
+  <p><%= link_to 'Edit Address', "/profile/addresses/#{@address.id}/edit" %></p>
+  <%= button_to 'Delete Address', "/profile/addresses/#{@address.id}", method: :delete %>
+<% end %>
