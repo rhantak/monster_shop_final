@@ -1,5 +1,6 @@
 <h1>Your Addresses</h1>
 <hr>
+<p><%= link_to 'Add Address', "/profile/addresses/new" %></p>
 <% if !@addresses.empty? %>
   <% @addresses.each do |address| %>
     <section id = "address-<%= address.id %>">
