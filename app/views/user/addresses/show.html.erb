@@ -2,3 +2,4 @@
 <p>Name: <%= @address.name %></p>
 <p><%= @address.street_address %></p>
 <p><%= "#{@address.city} #{@address.state} #{@address.zip}" %></p>
+<p><%= link_to 'Edit Address', "/profile/addresses/#{@address.id}/edit" %></p>
