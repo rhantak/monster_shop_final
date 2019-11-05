@@ -1,0 +1,14 @@
+<h1>Your Addresses</h1>
+<hr>
+<% if !@addresses.empty? %>
+  <% @addresses.each do |address| %>
+    <section id = "address-<%= address.id %>">
+      <h3><%= address.nickname %></h3>
+      <p>Name: <%= address.name %></p>
+      <p><%= address.street_address %></p>
+      <p><%= "#{address.street_address}, #{address.city} #{address.state} #{address.zip}" %></p>
+    </section>
+  <% end %>
+<% else %>
+  <p>You have no addresses! Please create at least one prior to checking out.</p>
+<% end %>
