@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#logout'
 
   get '/profile/addresses', to: 'user/addresses#index'
+  get '/profile/addresses/:address_id', to: 'user/addresses#show'
 
   namespace :merchant do
     get '/', to: 'dashboard#index', as: :dashboard

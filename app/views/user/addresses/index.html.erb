@@ -3,10 +3,10 @@
 <% if !@addresses.empty? %>
   <% @addresses.each do |address| %>
     <section id = "address-<%= address.id %>">
-      <h3><%= address.nickname %></h3>
+      <h3><%= link_to "#{address.nickname}", "/profile/addresses/#{address.id}" %></h3>
       <p>Name: <%= address.name %></p>
       <p><%= address.street_address %></p>
-      <p><%= "#{address.street_address}, #{address.city} #{address.state} #{address.zip}" %></p>
+      <p><%= "#{address.city} #{address.state} #{address.zip}" %></p>
     </section>
   <% end %>
 <% else %>
