@@ -1,0 +1,23 @@
+<h1>Edit <%= @address.nickname %></h1>
+
+<%= form_tag "/profile/addresses/#{@address.id}", method: :patch do %>
+  <%= label_tag :nickname %>
+  <%= text_field_tag :nickname, @address.nickname %>
+
+  <%= label_tag :name %>
+  <%= text_field_tag :name, @address.name %>
+
+  <%= label_tag :street_address %>
+  <%= text_field_tag :street_address, @address.street_address %>
+
+  <%= label_tag :city %>
+  <%= text_field_tag :city, @address.city %>
+
+  <%= label_tag :state %>
+  <%= text_field_tag :state, @address.state %>
+
+  <%= label_tag :zip %>
+  <%= text_field_tag :zip, @address.zip %>
+
+  <%= submit_tag 'Update Address' %>
+<% end %>
