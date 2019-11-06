@@ -11,7 +11,6 @@ RSpec.describe 'Create Order' do
       @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 3 )
       @user = User.create!(name: 'Megan', email: 'megan@example.com', password: 'securepassword')
       @address_1 = Address.create(nickname: 'Home', name: 'Megan', street_address: '123 A Street', city: 'Dallas', state: 'TX', zip: '75070', user_id: @user.id)
-      @address_2 = Address.create(nickname: 'Work', name: 'Megan', street_address: '234 B Street', city: 'Denver', state: 'CO', zip: '80202', user_id: @user.id)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
@@ -27,7 +26,7 @@ RSpec.describe 'Create Order' do
       visit '/cart'
 
       click_button 'Check Out'
-      
+
       order = Order.last
 
       expect(current_path).to eq('/profile/orders')
@@ -37,6 +36,25 @@ RSpec.describe 'Create Order' do
       within "#order-#{order.id}" do
         expect(page).to have_link(order.id)
       end
+    end
+
+    it "If I have no addresses, I see a message containing a link to add an address" do
+      @address_1.delete
+
+      visit item_path(@ogre)
+      click_button 'Add to Cart'
+      visit item_path(@hippo)
+      click_button 'Add to Cart'
+      visit item_path(@hippo)
+      click_button 'Add to Cart'
+
+      visit '/cart'
+
+      expect(page).to_not have_button 'Checkout'
+      expect(page).to have_content ('You have no addresses on file. Please add an address.')
+      expect(page).to have_link ('add an address')
+      click_link 'add an address'
+      expect(current_path).to eq('/profile/addresses/new')
     end
   end
 
