@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get '/profile/addresses/:address_id/edit', to: 'user/addresses#edit'
   post '/profile/addresses', to: 'user/addresses#create'
   patch '/profile/addresses/:address_id', to: 'user/addresses#update'
+  delete '/profile/addresses/:address_id', to: 'user/addresses#destroy'
 
   namespace :merchant do
     get '/', to: 'dashboard#index', as: :dashboard

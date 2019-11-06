@@ -5,12 +5,7 @@ class User < ApplicationRecord
   has_many :orders
   has_many :addresses
 
-  validates_presence_of :name,
-                        :address,
-                        :city,
-                        :state,
-                        :zip,
-                        :email
+  validates_presence_of  :name, :email
 
   validates_uniqueness_of :email
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User addresses creation' do
   describe 'As a user, when I navigate to my addresses index page' do
     before(:each) do
-      @user = User.create(name: 'Ryan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'ryan@example.com', password: 'securepassword')
+      @user = User.create(name: 'Ryan', email: 'ryan@example.com', password: 'securepassword')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
       visit '/profile'

@@ -8,4 +8,8 @@ class Address < ApplicationRecord
                          :city,
                          :state,
                          :zip
+
+  def none_shipped?
+    (orders.where(status: "shipped")).empty?
+  end
 end
