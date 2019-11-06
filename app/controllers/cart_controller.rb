@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   before_action :exclude_admin
-  
+
   def add_item
     item = Item.find(params[:item_id])
     session[:cart] ||= {}
@@ -15,6 +15,9 @@ class CartController < ApplicationController
   end
 
   def show
+    if current_user
+      @address_options = current_user.addresses.map{ |add| [ add.nickname, add.id ] }
+    end
   end
 
   def empty
