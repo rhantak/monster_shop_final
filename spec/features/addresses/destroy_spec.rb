@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'User addresses can be deleted' do
   describe 'As a user, when I visit an address show page' do
     before(:each) do
-      @user = User.create(name: 'Ryan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'ryan@example.com', password: 'securepassword')
+      @user = User.create(name: 'Ryan', email: 'ryan@example.com', password: 'securepassword')
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
       @address_1 = Address.create(nickname: 'Home Address', name: 'Ryan Hantak', street_address: '123 A Street', city: 'Dallas', state: 'TX', zip: '75070', user_id: @user.id)
