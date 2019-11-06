@@ -1,0 +1,5 @@
+<h1>Change Order Address</h1>
+<%= form_tag "/profile/orders/#{@order.id}", method: :patch do %>
+  <%= select(:order, :address_id, @address_options) %>
+  <%= submit_tag 'Change Address' %>
+<% end %>

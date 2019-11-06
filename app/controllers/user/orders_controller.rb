@@ -9,6 +9,17 @@ class User::OrdersController < ApplicationController
     @order = current_user.orders.find(params[:id])
   end
 
+  def edit
+    @order = Order.find(params[:order_id])
+    @address_options = current_user.addresses.map{ |add| [ add.nickname, add.id ] }
+  end
+
+  def update
+    order = Order.find(params[:order_id])
+    order.update(order_params)
+    redirect_to "/profile/orders/#{order.id}"
+  end
+
   def create
     order = current_user.orders.new(order_params)
     order.save
