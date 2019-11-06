@@ -10,7 +10,7 @@ class User::OrdersController < ApplicationController
   end
 
   def create
-    order = current_user.orders.new
+    order = current_user.orders.new(order_params)
     order.save
       cart.items.each do |item|
         order.order_items.create({
@@ -29,4 +29,9 @@ class User::OrdersController < ApplicationController
     order.cancel
     redirect_to "/profile/orders/#{order.id}"
   end
+
+  private
+    def order_params
+      params.require(:order).permit(:address_id)
+    end
 end
