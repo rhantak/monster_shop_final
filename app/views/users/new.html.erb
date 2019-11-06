@@ -2,14 +2,33 @@
   <%= f.label :name %>
   <%= f.text_field :name %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
   <%= f.label :password %>
   <%= f.password_field :password %>
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.fields_for @user.addresses.new do |g| %>
+    <%= g.label :address_nickname %>
+    <%= g.text_field :nickname %>
+
+    <%= g.label :shipping_name %>
+    <%= g.text_field :name %>
+
+    <%= g.label :street_address %>
+    <%= g.text_field :street_address %>
+
+    <%= g.label :city %>
+    <%= g.text_field :city %>
+
+    <%= g.label :state %>
+    <%= g.text_field :state %>
+
+    <%= g.label :zip %>
+    <%= g.text_field :zip %>
+    <% end %>
   <%= f.submit 'Register' %>
 <% end %>
